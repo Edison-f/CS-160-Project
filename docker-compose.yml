@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: sortsmart-mysql
+    environment:
+      MYSQL_DATABASE: sortsmart
+      MYSQL_USER: sortsmart
+      MYSQL_PASSWORD: sortsmartpw
+      MYSQL_ROOT_PASSWORD: rootpw
+    ports:
+      - "3306:3306"
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
