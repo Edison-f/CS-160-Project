@@ -8,11 +8,8 @@ load_dotenv()
 
 # TODO: Implement this endpoint
 def categories():
-    conn = get_db_connection()
-    try:
+    with get_db_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT id, name, description FROM materials ORDER BY name")
+            cur.execute("SELECT id, name, icon FROM materials ORDER BY name;")
             rows = cur.fetchall()
-        return jsonify({"categories": rows})
-    finally:
-        conn.close()
+    return jsonify(rows)
