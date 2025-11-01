@@ -1,20 +1,12 @@
 from flask import jsonify
-import psycopg2
 import os
 from dotenv import load_dotenv
+from flask import jsonify, request
+from api.db import get_db_connection
 
 load_dotenv()
 
-def get_db_connection():
-    conn = psycopg2.connect(
-        host=os.getenv('DB_HOST'),
-        database=os.getenv('DB_NAME'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        port=os.getenv('DB_PORT')
-    )
-    return conn
-
+# TODO: Implement this endpoint
 def categories():
     conn = get_db_connection()
     cur = conn.cursor()
