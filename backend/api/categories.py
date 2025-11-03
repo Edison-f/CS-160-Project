@@ -10,6 +10,7 @@ load_dotenv()
 def categories():
     with get_db_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT id, name, icon FROM materials ORDER BY name;")
+            # materials table has (id, name, description). No 'icon' column.
+            cur.execute("SELECT id, name, description FROM materials ORDER BY name;")
             rows = cur.fetchall()
     return jsonify(rows)

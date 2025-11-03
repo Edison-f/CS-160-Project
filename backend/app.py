@@ -11,12 +11,17 @@ from api.nearby_locations import nearby_locations
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend', static_url_path='/static')
 CORS(app)
 
 @app.route('/')
 def index():
     return send_from_directory('../frontend', 'index.html')
+
+# Serve any other frontend file (HTML, CSS, JS, images) by path
+@app.route('/<path:path>')
+def static_files(path):
+    return send_from_directory('../frontend', path)
 
 @app.route('/api/categories')
 def api_categories():
