@@ -112,9 +112,16 @@
                       </a>
                     </li>
                     <li class="navigation__item">
-                      <a href="index.html#resources-section">
+                      <a href="index.html#resources">
                         <div class="navigation__link">
                           <span>Resource Links</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="navigation__item">
+                      <a href="index.html#about">
+                        <div class="navigation__link">
+                          <span>Photo Recognition</span>
                         </div>
                       </a>
                     </li>
@@ -129,6 +136,95 @@
                 </div>
               </div>
             </nav>
+            <div class="navigation-container2">
+              <div class="navigation-container3">
+                <style>
+                  @media (prefers-reduced-motion: reduce) {
+                    * {
+                      animation-duration: 0.01ms !important;
+                      animation-iteration-count: 1 !important;
+                      transition-duration: 0.01ms !important;
+                    }
+                  }
+                </style>
+              </div>
+            </div>
+            <div class="navigation-container4">
+              <div class="navigation-container5">
+                <script defer data-name="navigation">
+                  document.addEventListener('DOMContentLoaded', function() {
+                    (function(){
+                      const navigationToggle = document.getElementById("navigation-toggle");
+                      const navigationMenu = document.getElementById("navigation-menu");
+                      const navigation = document.getElementById("main-navigation");
+
+                      if (navigationToggle && navigationMenu) {
+                        navigationToggle.addEventListener("click", function () {
+                          const isExpanded = navigationToggle.getAttribute("aria-expanded") === "true";
+                          navigationToggle.setAttribute("aria-expanded", !isExpanded);
+                          navigationMenu.classList.toggle("navigation__menu--open");
+                          document.body.style.overflow = !isExpanded ? "hidden" : "";
+                        });
+
+                        // Close when clicking backdrop on mobile
+                        navigationMenu.addEventListener("click", function (e) {
+                          if (e.target === navigationMenu && navigationMenu.classList.contains("navigation__menu--open")) {
+                            navigationToggle.setAttribute("aria-expanded", "false");
+                            navigationMenu.classList.remove("navigation__menu--open");
+                            document.body.style.overflow = "";
+                          }
+                        });
+
+                        // Close when selecting a link on mobile
+                        const navigationLinks = navigationMenu.querySelectorAll(".navigation__link");
+                        navigationLinks.forEach(function (link) {
+                          link.addEventListener("click", function () {
+                            if (window.innerWidth <= 991) {
+                              navigationToggle.setAttribute("aria-expanded", "false");
+                              navigationMenu.classList.remove("navigation__menu--open");
+                              document.body.style.overflow = "";
+                            }
+                          });
+                        });
+
+                        // Reset menu state on resize
+                        let resizeTimer;
+                        window.addEventListener("resize", function () {
+                          clearTimeout(resizeTimer);
+                          resizeTimer = setTimeout(function () {
+                            if (window.innerWidth > 991) {
+                              navigationToggle.setAttribute("aria-expanded", "false");
+                              navigationMenu.classList.remove("navigation__menu--open");
+                              document.body.style.overflow = "";
+                            }
+                          }, 150);
+                        });
+                      }
+
+                      // Add scroll enhancement class
+                      window.addEventListener("scroll", function () {
+                        const currentScroll = window.pageYOffset;
+                        if (currentScroll > 50) {
+                          navigation.classList.add("navigation--scrolled");
+                        } else {
+                          navigation.classList.remove("navigation--scrolled");
+                        }
+                      });
+
+                      // Escape to close
+                      document.addEventListener("keydown", function (e) {
+                        if (e.key === "Escape" && navigationMenu.classList.contains("navigation__menu--open")) {
+                          navigationToggle.setAttribute("aria-expanded", "false");
+                          navigationMenu.classList.remove("navigation__menu--open");
+                          document.body.style.overflow = "";
+                          navigationToggle.focus();
+                        }
+                      });
+                    })();
+                  });
+                </script>
+              </div>
+            </div>
           </div>
         </navigation-wrapper>
       </div>

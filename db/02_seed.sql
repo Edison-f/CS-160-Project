@@ -13,20 +13,19 @@ INSERT INTO item_aliases (item_id, alias)
 VALUES
  (1, 'cardboard pizza box'), (2, 'soda can'), (3, 'Li-ion battery');
 
-INSERT INTO jurisdictions (name, kind, state) VALUES
- ('San José, CA', 'city', 'CA'),
- ('SJSU Campus', 'campus', 'CA');
-
-INSERT INTO resources (jurisdiction_id, title, url)
+-- Example county resources (keyed by county_name/state)
+INSERT INTO resources (county_name, state, title, url)
 VALUES
- (1, 'City Recycling Guide', 'https://sanjoserecycles.org/guide/'),
- (2, 'Campus Waste Rules', 'https://www.sjsu.edu/fdo/services/recycling/index.php');
+ ('Santa Clara County', 'CA', 'Santa Clara County Recycling Guide', 'https://www.santaclaraca.gov/our-city/departments-boards-commissions/environmental-services/garbage-recycling-reuse/recycling-resources'),
+ ('San Mateo County',   'CA', 'San Mateo County RecycleWorks',      'https://www.smcsustainability.org/waste-reduction/recycleworks/');
 
-INSERT INTO disposal_rules (item_id, jurisdiction_id, stream, instructions, source_url)
+-- Localized rules keyed by county_name/state
+INSERT INTO disposal_rules (item_id, county_name, state, stream, instructions, source_url)
 VALUES
- (1, 1, 'trash', 'Tear off clean lid for recycling; greasy bottom = trash.', 'https://sanjoserecycles.org/guide/pizza-boxes/'),
- (3, 1, 'hazardous', 'Drop at HHW center; do not throw in trash bin.', 'https://www.sanjoseca.gov/your-government/departments-offices/environmental-services/recycling-garbage/residents/how-to-recycle-right/household-hazardous-waste');
- 
+ (1, 'Santa Clara County', 'CA', 'trash',     'Tear off clean lid for recycling; greasy bottom = trash.', 'https://sanjoserecycles.org/guide/pizza-boxes/'),
+ (3, 'Santa Clara County', 'CA', 'hazardous', 'Drop at HHW center; do not throw in trash bin.',          'https://www.sanjoseca.gov/your-government/departments-offices/environmental-services/recycling-garbage/residents/how-to-recycle-right/household-hazardous-waste');
+
+-- Drop-off location example 
 INSERT INTO dropoff_locations
  (name, address1, city, state, postal_code, phone, website, hours, coord)
 VALUES

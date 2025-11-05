@@ -38,34 +38,37 @@ CREATE TABLE item_aliases (
   FULLTEXT KEY ft_alias (alias)
 ) ENGINE=InnoDB;
 
--- Jurisdictions + resources
-CREATE TABLE jurisdictions (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(120) NOT NULL,
-  kind ENUM('campus','city','county','region') NOT NULL DEFAULT 'city',
-  state VARCHAR(64),
-  country VARCHAR(64) DEFAULT 'USA'
+-- Zip codes mapped to counties
+CREATE TABLE zipcodes (
+  zip5 CHAR(5) PRIMARY KEY,
+  city VARCHAR(80),
+  state CHAR(2) NOT NULL DEFAULT 'CA',
+  county_name VARCHAR(120) NOT NULL,
+  KEY idx_zip_county (state, county_name)
 ) ENGINE=InnoDB;
 
+-- Resources
 CREATE TABLE resources (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  jurisdiction_id INT NOT NULL,
+  county_name VARCHAR(120) NOT NULL,
+  state CHAR(2) NOT NULL DEFAULT 'CA',
   title VARCHAR(160) NOT NULL,
   url VARCHAR(512) NOT NULL,
-  CONSTRAINT fk_resources_juris FOREIGN KEY (jurisdiction_id) REFERENCES jurisdictions(id)
+  KEY idx_resources_county (state, county_name)
 ) ENGINE=InnoDB;
 
--- Localized rules
+-- Localized rules keyed by county name/state
 CREATE TABLE disposal_rules (
   id INT AUTO_INCREMENT PRIMARY KEY,
   item_id INT NOT NULL,
-  jurisdiction_id INT NOT NULL,
+  county_name VARCHAR(120) NOT NULL,
+  state CHAR(2) NOT NULL DEFAULT 'CA',
   stream ENUM('recycle','compost','trash','hazardous','special') NOT NULL,
   instructions TEXT,
   source_url VARCHAR(512),
-  UNIQUE KEY uq_rule (item_id, jurisdiction_id),
+  UNIQUE KEY uq_rule (item_id, state, county_name),
   CONSTRAINT fk_rule_item FOREIGN KEY (item_id) REFERENCES items(id),
-  CONSTRAINT fk_rule_juris FOREIGN KEY (jurisdiction_id) REFERENCES jurisdictions(id)
+  KEY idx_dr_county (state, county_name)
 ) ENGINE=InnoDB;
 
 -- Drop-off locations (geospatial)
@@ -108,10 +111,11 @@ CREATE TABLE photos (
 CREATE TABLE chatbot_logs (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   asked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  jurisdiction_id INT NULL,
+  county_name VARCHAR(120) NULL,
+  state CHAR(2) NULL,
   user_query TEXT NOT NULL,
   answer TEXT,
   item_id INT NULL,
   CONSTRAINT fk_chat_item FOREIGN KEY (item_id) REFERENCES items(id),
-  CONSTRAINT fk_chat_juris FOREIGN KEY (jurisdiction_id) REFERENCES jurisdictions(id)
+  KEY idx_chat_county (state, county_name)
 ) ENGINE=InnoDB;

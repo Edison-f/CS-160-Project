@@ -8,6 +8,7 @@ from api.resource_links import resource_links
 from api.chatbot import chatbot
 from api.image_recognition import image_recognition
 from api.nearby_locations import nearby_locations
+from api.zip_lookup import zip_lookup
 
 load_dotenv()
 
@@ -46,6 +47,10 @@ def api_image_recognition():
 @app.route('/api/nearby_locations')
 def api_nearby_locations():
     return nearby_locations()
+
+@app.route('/api/zip_lookup')
+def api_zip_lookup():
+    return zip_lookup()
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.getenv('PORT', 5000)))

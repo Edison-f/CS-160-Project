@@ -319,7 +319,25 @@
                 aria-label="Search recycling items"
                 class="hero-search"
               >
-                <form class="search-form">
+                <!-- ZIP lookup -->
+                <form id="zip-form" class="lookup-form" style="margin-bottom: .5rem;">
+                  <label for="zip-input" class="sr-only">Enter ZIP code</label>
+                  <input
+                    id="zip-input"
+                    name="zip"
+                    inputmode="numeric"
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    placeholder="Enter 5-digit ZIP (CA only)"
+                    aria-label="Enter 5-digit ZIP code"
+                  />
+                  <button type="submit" class="btn btn-outline btn-sm">Set ZIP</button>
+                  <span id="jurisdiction-badge" class="badge" style="display:none; color:#000;"></span>
+                  <button id="clear-jurisdiction" type="button" class="btn btn-link btn-sm" style="display:none;">Clear</button>
+                </form>
+
+                <!-- Item search -->
+                <form id="hero-search-form" class="search-form">
                   <input
                     type="search"
                     id="hero-search-input"
@@ -332,26 +350,16 @@
                     aria-label="Search"
                     class="search-submit btn btn-primary"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      >
-                        <path d="m21 21l-4.34-4.34"></path>
-                        <circle cx="11" cy="11" r="8"></circle>
-                      </g>
-                    </svg>
+                    <!-- ...existing icon... -->
                     <span>Search</span>
                   </button>
                 </form>
+
+                <!-- Results -->
+                <div id="search-results" class="content-block" style="margin-top: .75rem; display:none;">
+                  <h2 style="margin-bottom: .5rem;">Results</h2>
+                  <ul id="results-list" style="list-style:none; padding:0; margin:0;"></ul>
+                </div>
               </div>
               <div class="hero-categories">
                 <div class="category-card">
@@ -441,364 +449,140 @@
             </div>
           </div>
         </section>
-        <section id="quick-search-section" class="quick-search-section">
-          <div class="search-category-container">
-            <div class="search-panel">
-              <h2>Search by Item Name</h2>
-              <p>
-                Type an item or select a material to get precise, local
-                recycling guidance.
-              </p>
-              <form class="quick-search-form">
-                <input
-                  type="search"
-                  id="quick-search-input"
-                  placeholder="Enter item name..."
-                  aria-label="Search items"
-                  aria-describedby="search-help"
-                />
-                <button type="submit" class="btn btn-primary">
-                  Get Guidance
-                </button>
-              </form>
-              <span id="search-help" class="search-help">
-                Quick, authoritative results tailored to your area and hauler
-                rules.
-              </span>
-            </div>
-            <div class="categories-grid">
-              <button
-                role="button"
-                aria-label="Browse Plastic category"
-                class="category-button"
-              >
-                <div class="category-content">
-                  <h3>Plastic</h3>
-                  <p>Bottles, containers, film, and rigid plastics</p>
-                </div>
-              </button>
-              <button
-                role="button"
-                aria-label="Browse Paper category"
-                class="category-button"
-              >
-                <div class="category-content">
-                  <h3>Paper</h3>
-                  <p>Cardboard, magazines, office paper, newsprint</p>
-                </div>
-              </button>
-              <button
-                role="button"
-                aria-label="Browse Metal category"
-                class="category-button"
-              >
-                <div class="category-content">
-                  <h3>Metal</h3>
-                  <p>Aluminum cans, steel, tin, scrap metal</p>
-                </div>
-              </button>
-              <button
-                role="button"
-                aria-label="Browse Hazardous Waste category"
-                class="category-button"
-              >
-                <div class="category-content">
-                  <h3>Hazardous Waste</h3>
-                  <p>Batteries, electronics, chemicals, paint</p>
-                </div>
-              </button>
-            </div>
-          </div>
-        </section>
-        <section id="resources-section" class="resources-section">
-          <div class="resources-container">
-            <article class="resources-content">
-              <h1>Local Resources &amp; Rules</h1>
-              <p class="lead">
-                Access official city hauler rules and find nearby drop-off
-                locations by area code — reliable, up-to-date guidance to ensure
-                compliance and maximize diversion.
-              </p>
-              <div class="content-block">
-                <h2>Official Hauler Rules — Direct Links</h2>
-                <p>
-                  Quick access to municipal and hauler recycling policies so
-                  your team can confirm curbside acceptables, collection
-                  schedules, and special handling for bulky or hazardous items.
-                </p>
-              </div>
-              <div class="quick-links-grid">
-                <div class="quick-link-card">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path
-                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-                      ></path>
-                      <path
-                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-                      ></path>
-                    </g>
-                  </svg>
-                  <h3>Municipal Policies</h3>
-                  <p>City recycling regulations</p>
-                </div>
-                <div class="quick-link-card">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path
-                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-                      ></path>
-                      <path
-                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-                      ></path>
-                    </g>
-                  </svg>
-                  <h3>Hazardous Waste</h3>
-                  <p>Special handling sites</p>
-                </div>
-              </div>
-              <div class="content-block">
-                <h2>Why This Matters</h2>
-                <p>
-                  Clear, local rules reduce sorting errors and improve program
-                  outcomes. Our curated, city-level resources give facilities
-                  managers and sustainability coordinators the factual basis
-                  they need to set policy, train staff, and report results with
-                  confidence.
-                </p>
-              </div>
-            </article>
-            <aside class="action-panel">
-              <div class="action-card">
-                <h3>Area Code Lookup</h3>
-                <p>
-                  Enter an area code to reveal certified drop-off sites near
-                  you.
-                </p>
-                <form class="lookup-form">
-                  <input
-                    type="text"
-                    id="area-code-input"
-                    placeholder="Enter ZIP or area code"
-                    aria-label="Enter area code"
-                    aria-required="true"
-                    maxlength="5"
-                  />
-                  <button type="submit" class="btn btn-primary">
-                    Find Locations
-                  </button>
-                </form>
-              </div>
-              <button
-                aria-haspopup="dialog"
-                class="chatbot-cta btn btn-primary"
-              >
-                Need Help? Ask Chatbot
-              </button>
-            </aside>
-          </div>
-        </section>
-        <div class="home-container4">
-          <div class="home-container5">
-            <style>
-                      @keyframes revealCard {to {opacity: 1;
-              transform: translateY(0);}}
-            </style>
-          </div>
-        </div>
-        <div class="home-container6">
-          <div class="home-container7">
-            <script defer="" data-name="homepage-interactions">
-              document.addEventListener('DOMContentLoaded', function() {
-                (function(){
-                  // Video autoplay with Intersection Observer
-                  const campusVideo = document.getElementById("campus-video")
-
-                  if (campusVideo) {
-                    const videoObserver = new IntersectionObserver(
-                      (entries) => {
-                        entries.forEach((entry) => {
-                          if (entry.isIntersecting) {
-                            campusVideo.play().catch((err) => {
-                              console.log("Video autoplay prevented:", err)
-                            })
-                          } else {
-                            campusVideo.pause()
-                          }
-                        })
-                      },
-                      { threshold: 0.5 }
-                    )
-
-                    videoObserver.observe(campusVideo)
-                  }
-
-                  // Form submission handlers
-                  const heroSearchForm = document.querySelector(".hero-section .search-form")
-                  const quickSearchForm = document.querySelector(".quick-search-form")
-                  const lookupForm = document.querySelector(".lookup-form")
-
-                  if (heroSearchForm) {
-                    heroSearchForm.addEventListener("submit", (e) => {
-                      e.preventDefault()
-                      const searchInput = document.getElementById("hero-search-input")
-                      if (searchInput && searchInput.value.trim()) {
-                        console.log("Hero search submitted:", searchInput.value)
-                        // Handle search logic here
-                      }
-                    })
-                  }
-
-                  if (quickSearchForm) {
-                    quickSearchForm.addEventListener("submit", (e) => {
-                      e.preventDefault()
-                      const searchInput = document.getElementById("quick-search-input")
-                      if (searchInput && searchInput.value.trim()) {
-                        console.log("Quick search submitted:", searchInput.value)
-                        // Handle search logic here
-                      }
-                    })
-                  }
-
-                  if (lookupForm) {
-                    lookupForm.addEventListener("submit", (e) => {
-                      e.preventDefault()
-                      const areaCodeInput = document.getElementById("area-code-input")
-                      if (areaCodeInput && areaCodeInput.value.trim()) {
-                        console.log("Area code lookup submitted:", areaCodeInput.value)
-                        // Handle lookup logic here
-                      }
-                    })
-                  }
-
-                  // Category card interactions
-                  const categoryCards = document.querySelectorAll(".category-card")
-                  categoryCards.forEach((card) => {
-                    card.addEventListener("click", () => {
-                      console.log("Category selected:", card.querySelector("h3").textContent)
-                      // Handle category navigation
-                    })
-
-                    // Make keyboard accessible
-                    card.setAttribute("tabindex", "0")
-                    card.setAttribute("role", "button")
-
-                    card.addEventListener("keypress", (e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault()
-                        card.click()
-                      }
-                    })
-                  })
-
-                  // Category button interactions
-                  const categoryButtons = document.querySelectorAll(".category-button")
-                  categoryButtons.forEach((button) => {
-                    button.addEventListener("click", () => {
-                      console.log(
-                        "Category button clicked:",
-                        button.querySelector("h3").textContent
-                      )
-                      // Handle category navigation
-                    })
-                  })
-
-                  // Chatbot launch buttons
-                  const chatbotButtons = document.querySelectorAll('[aria-haspopup="dialog"]')
-                  chatbotButtons.forEach((button) => {
-                    button.addEventListener("click", () => {
-                      console.log("Chatbot launch requested")
-                      // Handle chatbot modal/dialog opening
-                    })
-                  })
-
-                  // Demo card animations on scroll
-                  const demoCards = document.querySelectorAll(".demo-card")
-                  const cardObserver = new IntersectionObserver(
-                    (entries) => {
-                      entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                          entry.target.style.animationPlayState = "running"
-                        }
-                      })
-                    },
-                    { threshold: 0.1 }
-                  )
-
-                  demoCards.forEach((card) => {
-                    cardObserver.observe(card)
-                  })
-
-                  // Tool cards reveal animation
-                  const toolCards = document.querySelectorAll(".tool-card")
-                  const toolObserver = new IntersectionObserver(
-                    (entries) => {
-                      entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                          entry.target.style.animationPlayState = "running"
-                        }
-                      })
-                    },
-                    { threshold: 0.1 }
-                  )
-
-                  toolCards.forEach((card) => {
-                    toolObserver.observe(card)
-                  })
-                })()
-              });
-            </script>
-          </div>
-        </div>
-        <a href="https://play.teleporthq.io/signup">
-          <div aria-label="Sign up to TeleportHQ" class="home-container8">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 19 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="home-icon33"
-            >
-              <path
-                d="M9.1017 4.64355H2.17867C0.711684 4.64355 -0.477539 5.79975 -0.477539 7.22599V13.9567C-0.477539 15.3829 0.711684 16.5391 2.17867 16.5391H9.1017C10.5687 16.5391 11.7579 15.3829 11.7579 13.9567V7.22599C11.7579 5.79975 10.5687 4.64355 9.1017 4.64355Z"
-                fill="#B23ADE"
-              ></path>
-              <path
-                d="M10.9733 12.7878C14.4208 12.7878 17.2156 10.0706 17.2156 6.71886C17.2156 3.3671 14.4208 0.649963 10.9733 0.649963C7.52573 0.649963 4.73096 3.3671 4.73096 6.71886C4.73096 10.0706 7.52573 12.7878 10.9733 12.7878Z"
-                fill="#FF5C5C"
-              ></path>
-              <path
-                d="M17.7373 13.3654C19.1497 14.1588 19.1497 15.4634 17.7373 16.2493L10.0865 20.5387C8.67402 21.332 7.51855 20.6836 7.51855 19.0968V10.5141C7.51855 8.92916 8.67402 8.2807 10.0865 9.07221L17.7373 13.3654Z"
-                fill="#2874DE"
-              ></path>
-            </svg>
-            <span class="home-text40">Built in TeleportHQ</span>
-          </div>
-        </a>
       </div>
     </div>
   </body>
+  <script>
+    (function(){
+      const ZIP_STORAGE_KEY = 'sortsmart.jurisdiction';
+      const zipForm = document.getElementById('zip-form');
+      const zipInput = document.getElementById('zip-input');
+      const badge = document.getElementById('jurisdiction-badge');
+      const clearBtn = document.getElementById('clear-jurisdiction');
+
+      const searchForm = document.getElementById('hero-search-form');
+      const searchInput = document.getElementById('hero-search-input');
+      const resultsWrap = document.getElementById('search-results');
+      const resultsList = document.getElementById('results-list');
+
+      // Ensure the displayed/stored county includes the word "County"
+      function ensureCountySuffix(name) {
+        if (!name) return name;
+        const trimmed = String(name).trim();
+        return /\bcounty$/i.test(trimmed) ? trimmed : trimmed + ' County';
+      }
+
+      function getStoredJurisdiction() {
+        try { return JSON.parse(localStorage.getItem(ZIP_STORAGE_KEY) || 'null'); }
+        catch { return null; }
+      }
+      function setStoredJurisdiction(obj) {
+        localStorage.setItem(ZIP_STORAGE_KEY, JSON.stringify(obj));
+      }
+      function clearStoredJurisdiction() {
+        localStorage.removeItem(ZIP_STORAGE_KEY);
+      }
+      function renderBadge(j) {
+        const baseName = j && (j.county_name || j.jurisdiction_name);
+        const name = baseName ? ensureCountySuffix(baseName) : null;
+        if (name) {
+          badge.style.display = '';
+          clearBtn.style.display = '';
+          badge.textContent = name + ' (' + (j.zip5 || '') + ')';
+        } else {
+          badge.style.display = 'none';
+          clearBtn.style.display = 'none';
+          badge.textContent = '';
+        }
+      }
+
+      // Init from storage
+      const initJ = getStoredJurisdiction();
+      if (initJ) renderBadge(initJ);
+
+      // ZIP form submit
+      if (zipForm) {
+        zipForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const zip = (zipInput.value || '').trim();
+          if (!/^[0-9]{5}$/.test(zip)) {
+            alert('Please enter a valid 5-digit ZIP.');
+            return;
+          }
+          try {
+            const res = await fetch('/api/zip_lookup?zip=' + encodeURIComponent(zip));
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({}));
+              throw new Error(err.error || 'ZIP not found');
+            }
+            const data = await res.json();
+            // Normalize county/jurisdiction name to always include "County"
+            if (data.county_name) data.county_name = ensureCountySuffix(data.county_name);
+            if (data.jurisdiction_name) data.jurisdiction_name = ensureCountySuffix(data.jurisdiction_name);
+            setStoredJurisdiction(data);
+            renderBadge(data);
+          } catch (err) {
+            alert(err.message || 'Failed to look up ZIP.');
+          }
+        });
+      }
+
+      // Clear jurisdiction
+      clearBtn.addEventListener('click', () => {
+        clearStoredJurisdiction();
+        renderBadge(null);
+      });
+
+      // Render results
+      function renderResults(items) {
+        resultsList.innerHTML = '';
+        if (!items || !items.length) {
+          resultsList.innerHTML = '<li style="padding:.5rem 0; color: var(--color-on-surface-secondary);">No results.</li>';
+        } else {
+          items.forEach(row => {
+            const name = row.name;
+            const stream = row.stream || '';
+            const localized = row.is_localized ? ' (localized)' : ' (default)';
+            const instructions = row.instructions || '';
+            const li = document.createElement('li');
+            li.style.padding = '.5rem 0';
+            li.style.borderBottom = '1px solid var(--color-border)';
+            li.innerHTML = `
+              <strong>${name}</strong>
+              <div style="font-size:.9rem; color: var(--color-on-surface-secondary);">
+                Stream: <strong>${stream || 'n/a'}</strong>${stream ? localized : ''}
+                ${instructions ? `<div style="margin-top:2px;">${instructions}</div>` : ''}
+              </div>
+            `;
+            resultsList.appendChild(li);
+          });
+        }
+        resultsWrap.style.display = '';
+      }
+
+      // Search submit
+      if (searchForm) {
+        searchForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const q = (searchInput.value || '').trim();
+          if (!q) return;
+          const j = getStoredJurisdiction();
+          const params = new URLSearchParams({ q });
+          if (j && (j.county_name || j.jurisdiction_name)) {
+            const selectedCounty = ensureCountySuffix(j.county_name || j.jurisdiction_name);
+            params.set('county_name', selectedCounty);
+            params.set('state', j.state || 'CA');
+          }
+          try {
+            const res = await fetch('/api/item_search?' + params.toString());
+            const data = await res.json();
+            renderResults(data);
+          } catch {
+            resultsList.innerHTML = '<li style="padding:.5rem 0;">Failed to search.</li>';
+            resultsWrap.style.display = '';
+          }
+        });
+      }
+    })();
+  </script>
 </html>
