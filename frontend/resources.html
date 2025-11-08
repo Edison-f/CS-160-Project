@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Recycling categories — SortSmart</title>
-    <meta property="og:title" content="Recycling categories — SortSmart" />
+    <title>Resources — SortSmart</title>
+    <meta property="og:title" content="Resources — SortSmart" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="./style.css" />
     <link href="./index.css" rel="stylesheet" />
     <style>
-      .resources-container.categories-layout {
-        grid-template-columns: 1fr;
-      }
-      .home-container1 {
-        min-height: auto;
-      }
+        .home-container1 {
+          min-height: auto;
+        }
+        /* Ensure header/nav text is not underlined before hover on this page */
+        .navigation__container a,
+        .navigation__link,
+        .navigation__logo,
+        .navigation__logo-text {
+          text-decoration: none !important;
+        }
+        /* Page header (H1/H2) should never be underlined */
+        .resources-content h1,
+        .resources-content h2 {
+          text-decoration: none;
+        }
     </style>
   </head>
   <body>
@@ -22,29 +31,13 @@
       <div class="home-container1">
         <navigation-wrapper class="navigation-wrapper">
           <div class="navigation-container1">
-            <nav
-              id="main-navigation"
-              aria-label="Main navigation"
-              class="navigation"
-            >
+            <nav id="main-navigation" aria-label="Main navigation" class="navigation">
               <div class="navigation__container">
                 <a href="index.html">
                   <div aria-label="SortSmart - Home" class="navigation__logo">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                      class="navigation__logo-icon"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                         viewBox="0 0 24 24" aria-hidden="true" class="navigation__logo-icon">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881a1.79 1.79 0 0 1-.004-1.784L7.196 9.5M11 19h8.203a1.83 1.83 0 0 0 1.556-.89a1.78 1.78 0 0 0 0-1.775l-1.226-2.12"></path>
                         <path d="m14 16l-3 3l3 3m-5.707-8.404L7.196 9.5L3.1 10.598m6.244-4.787l1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.78 1.78 0 0 1 1.546.888l3.943 6.843"></path>
                         <path d="m13.378 9.633l4.096 1.098l1.097-4.096"></path>
@@ -99,37 +92,27 @@
                   <ul class="navigation__list">
                     <li class="navigation__item">
                       <a href="categories.html">
-                        <div class="navigation__link">
-                          <span>Recycling Categories</span>
-                        </div>
+                        <div class="navigation__link"><span>Recycling Categories</span></div>
                       </a>
                     </li>
                     <li class="navigation__item">
                       <a href="index.html#locations">
-                        <div class="navigation__link">
-                          <span>Find Nearby Locations</span>
-                        </div>
+                        <div class="navigation__link"><span>Find Nearby Locations</span></div>
                       </a>
                     </li>
                     <li class="navigation__item">
                       <a href="resources.html">
-                        <div class="navigation__link">
-                          <span>Resource Links</span>
-                        </div>
+                        <div class="navigation__link"><span>Resource Links</span></div>
                       </a>
                     </li>
                     <li class="navigation__item">
                       <a href="index.html#about">
-                        <div class="navigation__link">
-                          <span>Photo Recognition</span>
-                        </div>
+                        <div class="navigation__link"><span>Photo Recognition</span></div>
                       </a>
                     </li>
                     <li class="navigation__item navigation__item--cta">
                       <a href="index.html#search">
-                        <div class="navigation__cta btn btn-primary">
-                          <span>AI Chatbot</span>
-                        </div>
+                        <div class="navigation__cta btn btn-primary"><span>AI Chatbot</span></div>
                       </a>
                     </li>
                   </ul>
@@ -140,11 +123,10 @@
               <div class="navigation-container3">
                 <style>
                   @media (prefers-reduced-motion: reduce) {
-                    * {
-                      animation-duration: 0.01ms !important;
-                      animation-iteration-count: 1 !important;
-                      transition-duration: 0.01ms !important;
+                    .navigation, .navigation__logo, .navigation__toggle, .navigation__link, .navigation__menu, .navigation__toggle-icon, .navigation__logo-icon {
+                      transition: none;
                     }
+                    .navigation__link::after { transition: none; }
                   }
                 </style>
               </div>
@@ -166,7 +148,7 @@
                           document.body.style.overflow = !isExpanded ? "hidden" : "";
                         });
 
-                        // Close when clicking backdrop on mobile
+                        // Backdrop click closes
                         navigationMenu.addEventListener("click", function (e) {
                           if (e.target === navigationMenu && navigationMenu.classList.contains("navigation__menu--open")) {
                             navigationToggle.setAttribute("aria-expanded", "false");
@@ -175,7 +157,7 @@
                           }
                         });
 
-                        // Close when selecting a link on mobile
+                        // Link click closes on mobile
                         const navigationLinks = navigationMenu.querySelectorAll(".navigation__link");
                         navigationLinks.forEach(function (link) {
                           link.addEventListener("click", function () {
@@ -187,7 +169,7 @@
                           });
                         });
 
-                        // Reset menu state on resize
+                        // Reset on resize
                         let resizeTimer;
                         window.addEventListener("resize", function () {
                           clearTimeout(resizeTimer);
@@ -197,11 +179,11 @@
                               navigationMenu.classList.remove("navigation__menu--open");
                               document.body.style.overflow = "";
                             }
-                          }, 150);
+                          }, 250);
                         });
                       }
 
-                      // Add scroll enhancement class
+                      // Scroll enhancement
                       window.addEventListener("scroll", function () {
                         const currentScroll = window.pageYOffset;
                         if (currentScroll > 50) {
@@ -211,7 +193,7 @@
                         }
                       });
 
-                      // Escape to close
+                      // Escape closes
                       document.addEventListener("keydown", function (e) {
                         if (e.key === "Escape" && navigationMenu.classList.contains("navigation__menu--open")) {
                           navigationToggle.setAttribute("aria-expanded", "false");
@@ -230,177 +212,169 @@
       </div>
     </div>
 
-  <main class="resources-container categories-layout" style="padding-top: 2rem; max-width: 1100px; margin: 0 auto;">
-      <header class="resources-content" style="margin-bottom: 1.5rem;">
-        <h1>Recycling categories</h1>
-        <p class="lead">Pick a material, then search items in that category.</p>
-      </header>
+    <main class="resources-section" style="max-width: var(--content-max-width);">
+      <div class="resources-container">
+        <section class="resources-content">
+          <h1>County recycling resources</h1>
+          <p class="lead">Enter your ZIP code to see official recycling guides for your county.</p>
 
-      <section class="search-category-container">
-        <div class="search-panel">
-          <form id="category-search-form" class="quick-search-form">
+          <form id="zip-form" class="lookup-form" style="margin: .25rem 0 0.5rem;">
+            <label for="zip-input" class="sr-only">Enter ZIP code</label>
             <input
-              type="search"
-              id="category-search-input"
-              placeholder="Search items (e.g., bottle, battery...)"
-              aria-label="Search items by name"
-              aria-describedby="category-search-help"
-              disabled
+              id="zip-input"
+              name="zip"
+              inputmode="numeric"
+              pattern="[0-9]{5}"
+              maxlength="5"
+              placeholder="Enter 5-digit ZIP (CA only)"
+              aria-label="Enter 5-digit ZIP code"
             />
-            <button type="submit" class="btn btn-primary" disabled>Search</button>
+            <button type="submit" class="btn btn-outline btn-sm">Set ZIP</button>
+            <span id="jurisdiction-badge" class="badge" style="display:none; color:#000;"></span>
+            <button id="clear-jurisdiction" type="button" class="btn btn-link btn-sm" style="display:none;">Clear</button>
           </form>
-          <span id="category-search-help" class="search-help">
-            Select a category first to enable search.
-          </span>
-        </div>
 
-        <div class="categories-grid" id="categories-grid" style="margin-top: 1rem;">
-          <!-- Categories will be injected here -->
-        </div>
-      </section>
+          <div id="results" class="content-block">
+            <h2>Resource links</h2>
+            <ul id="resource-list" style="list-style: none; padding: 0; margin-top: .5rem;"></ul>
+          </div>
+        </section>
 
-      <section style="margin-top: 2rem;">
-        <h2>Results</h2>
-        <ul id="results-list" style="list-style: none; padding: 0; margin-top: 0.5rem;">
-          <!-- Item results will be injected here -->
-        </ul>
-      </section>
+        <aside class="action-panel">
+          <div class="card">
+            <div class="card-header">
+              <strong>Tips</strong>
+            </div>
+            <div class="card-body">
+              <p>Your county site has the most accurate rules for diversion streams and special items.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
     </main>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Navigation toggle (same behavior as index.html)
+      (function() {
         const navigationToggle = document.getElementById("navigation-toggle");
         const navigationMenu = document.getElementById("navigation-menu");
         if (navigationToggle && navigationMenu) {
           navigationToggle.addEventListener("click", function () {
-            const isExpanded =
-              navigationToggle.getAttribute("aria-expanded") === "true";
+            const isExpanded = navigationToggle.getAttribute("aria-expanded") === "true";
             navigationToggle.setAttribute("aria-expanded", !isExpanded);
             navigationMenu.classList.toggle("navigation__menu--open");
             document.body.style.overflow = !isExpanded ? "hidden" : "";
           });
-          navigationMenu.addEventListener("click", function (e) {
-            if (
-              e.target === navigationMenu &&
-              navigationMenu.classList.contains("navigation__menu--open")
-            ) {
-              navigationToggle.setAttribute("aria-expanded", "false");
-              navigationMenu.classList.remove("navigation__menu--open");
-              document.body.style.overflow = "";
-            }
-          });
         }
 
-        const grid = document.getElementById('categories-grid');
-        const results = document.getElementById('results-list');
-        const form = document.getElementById('category-search-form');
-        const input = document.getElementById('category-search-input');
-        const submitBtn = form.querySelector('button');
+        const ZIP_STORAGE_KEY = 'sortsmart.jurisdiction';
+        const zipForm = document.getElementById('zip-form');
+        const zipInput = document.getElementById('zip-input');
+        const badge = document.getElementById('jurisdiction-badge');
+        const clearBtn = document.getElementById('clear-jurisdiction');
+        const list = document.getElementById('resource-list');
 
-        let selectedCategoryId = null;
-
-        function setSearchEnabled(enabled) {
-          input.disabled = !enabled;
-          submitBtn.disabled = !enabled;
-          document.getElementById('category-search-help').textContent =
-            enabled ? 'Type and submit to search items in the selected category.' :
-                      'Select a category first to enable search.';
-          if (enabled) {
-            input.focus();
+        function ensureCountySuffix(name) {
+          if (!name) return name;
+          const t = String(name).trim();
+          return /\bcounty$/i.test(t) ? t : t + ' County';
+        }
+        function getStoredJurisdiction() {
+          try { return JSON.parse(localStorage.getItem(ZIP_STORAGE_KEY) || 'null'); }
+          catch { return null; }
+        }
+        function setStoredJurisdiction(obj) {
+          localStorage.setItem(ZIP_STORAGE_KEY, JSON.stringify(obj));
+        }
+        function clearStoredJurisdiction() {
+          localStorage.removeItem(ZIP_STORAGE_KEY);
+        }
+        function renderBadge(j) {
+          const baseName = j && (j.county_name || j.jurisdiction_name);
+          const name = baseName ? ensureCountySuffix(baseName) : null;
+          if (name) {
+            badge.style.display = '';
+            clearBtn.style.display = '';
+            badge.textContent = name + ' (' + (j.zip5 || '') + ')';
+          } else {
+            badge.style.display = 'none';
+            clearBtn.style.display = 'none';
+            badge.textContent = '';
           }
         }
 
-        function renderCategories(data) {
-          grid.innerHTML = '';
-          data.forEach((row) => {
-            // API returns dicts with keys from MySQL DictCursor
-            const id = row.id;
-            const name = row.name;
-
-            const btn = document.createElement('button');
-            btn.className = 'category-button';
-            btn.setAttribute('role', 'button');
-            btn.setAttribute('aria-label', `Browse ${name} category`);
-
-            const wrapper = document.createElement('div');
-            wrapper.className = 'category-content';
-            const h3 = document.createElement('h3');
-            h3.textContent = name || 'Unknown material';
-            const p = document.createElement('p');
-            p.textContent = 'Search items in this material';
-            wrapper.appendChild(h3);
-            wrapper.appendChild(p);
-
-            btn.appendChild(wrapper);
-            btn.addEventListener('click', () => {
-              // Mark selection
-              selectedCategoryId = id;
-              Array.from(grid.querySelectorAll('.category-button')).forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
-              setSearchEnabled(true);
-              // Initial load of items in the category (no query)
-              fetchResults('');
-            });
-
-            grid.appendChild(btn);
-          });
+        async function loadResourcesByZip(zip) {
+          const res = await fetch('/api/resource_links?zip=' + encodeURIComponent(zip));
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.error || 'Failed to load resources');
+          }
+          return res.json();
         }
-
-        function renderResults(items) {
-          results.innerHTML = '';
-          if (!items.length) {
-            const li = document.createElement('li');
-            li.textContent = 'No items found.';
-            results.appendChild(li);
+        async function loadResourcesByCounty(j) {
+          const name = ensureCountySuffix(j.county_name || j.jurisdiction_name);
+          const res = await fetch('/api/resource_links?county_name=' + encodeURIComponent(name) + '&state=' + encodeURIComponent(j.state || 'CA'));
+          if (!res.ok) throw new Error('Failed to load resources');
+          return res.json();
+        }
+        function renderResources(rows) {
+          list.innerHTML = '';
+          if (!rows || !rows.length) {
+            list.innerHTML = '<li style="padding:.5rem 0; color: var(--color-on-surface-secondary);">No resources found.</li>';
             return;
           }
-          items.forEach((row) => {
-            // item_search returns dicts: {id, name, notes, default_stream, material_id}
-            const name = row.name;
-            const notes = row.notes || '';
-            const stream = row.default_stream || '';
-
+          rows.forEach(r => {
             const li = document.createElement('li');
-            li.style.padding = '0.5rem 0';
-            li.style.borderBottom = '1px solid var(--color-outline, #eee)';
-            li.innerHTML = `
-              <strong>${name}</strong>
-              <div style="font-size: .9rem; color: var(--color-on-surface-variant, #666);">
-                ${notes ? notes : ''} ${stream ? `(default: ${stream})` : ''}
-              </div>
-            `;
-            results.appendChild(li);
+            li.style.padding = '.5rem 0';
+            li.style.borderBottom = '1px solid var(--color-border)';
+            const title = r[1] || r.title;
+            const url = r[2] || r.url;
+            li.innerHTML = `<a href="${url}" target="_blank" rel="noopener" class="link">${title}</a>`;
+            list.appendChild(li);
           });
         }
 
-        async function fetchResults(q) {
-          if (!selectedCategoryId) return;
-          const params = new URLSearchParams();
-          if (q) params.set('q', q);
-          params.set('material_id', String(selectedCategoryId));
-          const res = await fetch('/api/item_search?' + params.toString());
-          const data = await res.json();
-          renderResults(data);
+        // Init from saved county
+        const initJ = getStoredJurisdiction();
+        if (initJ) {
+          renderBadge(initJ);
+          loadResourcesByCounty(initJ).then(renderResources).catch(() => renderResources([]));
         }
 
-        form.addEventListener('submit', (e) => {
+        // ZIP submit
+        zipForm.addEventListener('submit', async (e) => {
           e.preventDefault();
-          if (!selectedCategoryId) return;
-          fetchResults(input.value.trim());
+          const zip = (zipInput.value || '').trim();
+          if (!/^[0-9]{5}$/.test(zip)) {
+            alert('Please enter a valid 5-digit ZIP.');
+            return;
+          }
+          try {
+            // Resolve and store county/state
+            const zr = await fetch('/api/zip_lookup?zip=' + encodeURIComponent(zip));
+            if (!zr.ok) {
+              const err = await zr.json().catch(() => ({}));
+              throw new Error(err.error || 'ZIP not found');
+            }
+            const j = await zr.json();
+            if (j.county_name) j.county_name = ensureCountySuffix(j.county_name);
+            if (j.jurisdiction_name) j.jurisdiction_name = ensureCountySuffix(j.jurisdiction_name);
+            setStoredJurisdiction(j);
+            renderBadge(j);
+
+            // Load resources
+            const data = await loadResourcesByZip(zip);
+            renderResources(data);
+          } catch (err) {
+            alert(err.message || 'Failed to look up ZIP.');
+          }
         });
 
-        // Load categories
-        (async function init() {
-          try {
-            const res = await fetch('/api/categories');
-            const data = await res.json();
-            renderCategories(data);
-          } catch (e) {
-            grid.innerHTML = '<p>Failed to load categories.</p>';
-          }
-        })();
-      });
+        clearBtn.addEventListener('click', () => {
+          clearStoredJurisdiction();
+          renderBadge(null);
+          list.innerHTML = '<li style="padding:.5rem 0; color: var(--color-on-surface-secondary);">Enter a ZIP to see resources.</li>';
+        });
+      })();
     </script>
   </body>
 </html>

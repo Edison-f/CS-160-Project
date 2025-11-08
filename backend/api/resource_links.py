@@ -9,18 +9,33 @@ load_dotenv()
 # TODO: Implement this endpoint
 
 def resource_links():
-    jid = request.args.get("jurisdiction_id")
-    if jid:
-        sql = """
-          SELECT id, title, url, jurisdiction_id
-          FROM resources WHERE jurisdiction_id = %s ORDER BY title;
-        """
-        params = (jid,)
-    else:
-        sql = "SELECT id, title, url, jurisdiction_id FROM resources ORDER BY title;"
-        params = ()
+    zip5 = (request.args.get("zip") or "").strip()
+    county_name = (request.args.get("county_name") or "").strip()
+    state = (request.args.get("state") or "").strip() or "CA"
+
     with get_db_connection() as conn:
         with conn.cursor() as cur:
+            # Resolve county/state from ZIP if provided
+            if zip5 and zip5.isdigit() and len(zip5) == 5:
+                cur.execute("SELECT county_name, state FROM zipcodes WHERE zip5 = %s LIMIT 1", (zip5,))
+                z = cur.fetchone()
+                if not z:
+                    return jsonify({"error": "ZIP not found"}), 404
+                county_name, state = z[0], z[1]
+
+            # Return links for a county/state, or all if not specified
+            if county_name:
+                sql = """
+                  SELECT id, title, url, county_name, state
+                  FROM resources
+                  WHERE state = %s AND county_name = %s
+                  ORDER BY title
+                """
+                params = (state, county_name)
+            else:
+                sql = "SELECT id, title, url, county_name, state FROM resources ORDER BY county_name, title"
+                params = ()
+
             cur.execute(sql, params)
             rows = cur.fetchall()
     return jsonify(rows)

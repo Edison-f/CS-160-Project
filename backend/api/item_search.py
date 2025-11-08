@@ -12,46 +12,58 @@ def item_search():
     material_id = (request.args.get("material_id") or "").strip()
     county_name = (request.args.get("county_name") or "").strip()
     state = (request.args.get("state") or "").strip() or "CA"
+    include_all_defaults = request.args.get("include_all_defaults") == "1"
 
     where_clauses = []
     params = []
 
     if q:
-        where_clauses.append("(i.name LIKE %s OR i.notes LIKE %s OR a.alias LIKE %s)")
-        like = f"%{q}%"
-        params.extend([like, like, like])
+        # Tokenize query for more flexible matching (AND across tokens)
+        tokens = [t for t in q.split() if t]
+        token_clauses = []
+        for t in tokens:
+            token_like = f"%{t}%"
+            # Each token must appear in at least one of name/notes/alias
+            token_clauses.append("(i.name LIKE %s OR a.alias LIKE %s)")
+            params.extend([token_like, token_like])
+        where_clauses.append(" AND ".join(token_clauses))
 
     if material_id:
         where_clauses.append("i.material_id = %s")
         params.append(material_id)
 
-    if not where_clauses:
+    # Allow returning default seeded items when no search term and flag set
+    if not where_clauses and not include_all_defaults:
         return jsonify([])
 
-    dr_join = ""
-    if county_name:
-        dr_join = """
-          LEFT JOIN disposal_rules dr
-            ON dr.item_id = i.id
-           AND dr.state = %s
-           AND dr.county_name = %s
-        """
-        # Join params must precede WHERE params
-        params = [state, county_name] + params
+    # Always join disposal_rules so dr.* is safe to select
+    dr_join = """
+      LEFT JOIN disposal_rules dr
+        ON dr.item_id = i.id
+       AND dr.state = %s
+       AND dr.county_name = %s
+    """
+    # Join params must precede WHERE params
+    join_params = [state, county_name or None]
+    params = join_params + params
+
+    base_where = " AND ".join(where_clauses) if where_clauses else "1=1"
 
     sql = f"""
     SELECT DISTINCT
       i.id,
       i.name,
       i.material_id,
+      i.default_stream AS default_stream,
+      i.notes AS notes,
       COALESCE(dr.stream, i.default_stream) AS stream,
-      CASE WHEN dr.id IS NOT NULL THEN dr.instructions ELSE NULL END AS instructions,
+      COALESCE(dr.instructions, i.notes) AS instructions,
       dr.source_url,
       CASE WHEN dr.id IS NOT NULL THEN 1 ELSE 0 END AS is_localized
     FROM items i
     LEFT JOIN item_aliases a ON a.item_id = i.id
     {dr_join}
-    WHERE {' AND '.join(where_clauses)}
+    WHERE {base_where}
     ORDER BY i.name ASC
     LIMIT 50
     """
