@@ -21,17 +21,29 @@ def resource_links():
                 z = cur.fetchone()
                 if not z:
                     return jsonify({"error": "ZIP not found"}), 404
-                county_name, state = z[0], z[1]
+                # DictCursor returns dicts
+                county_name, state = z["county_name"], z["state"]
 
             # Return links for a county/state, or all if not specified
             if county_name:
-                sql = """
-                  SELECT id, title, url, county_name, state
-                  FROM resources
-                  WHERE state = %s AND county_name = %s
-                  ORDER BY title
-                """
-                params = (state, county_name)
+                # Accept both "X" and "X County"
+                if not county_name.lower().endswith(" county"):
+                    sql = """
+                      SELECT id, title, url, county_name, state
+                      FROM resources
+                      WHERE state = %s
+                        AND (county_name = %s OR county_name = CONCAT(%s, ' County'))
+                      ORDER BY title
+                    """
+                    params = (state, county_name, county_name)
+                else:
+                    sql = """
+                      SELECT id, title, url, county_name, state
+                      FROM resources
+                      WHERE state = %s AND county_name = %s
+                      ORDER BY title
+                    """
+                    params = (state, county_name)
             else:
                 sql = "SELECT id, title, url, county_name, state FROM resources ORDER BY county_name, title"
                 params = ()
