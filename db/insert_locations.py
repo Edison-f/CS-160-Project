@@ -28,7 +28,7 @@ def main():
                         line = line[:-1]
                         line += '|Not Available'
                 _, name, address1, city, postal_code, type, phone = [x.strip() for x in line.split('|')]
-                cur.execute("INSERT INTO dropoff_locations (name, address1, city, state, postal_code, phone, coord) VALUES (%s, %s, %s, %s, %s, %s, ST_GeomFromText('POINT(0 0)', 4326))", (name, address1, "CA", city, postal_code, phone))
+                cur.execute("INSERT INTO dropoff_locations (name, address1, state, city, postal_code, phone, coord) VALUES (%s, %s, %s, %s, %s, %s, ST_GeomFromText('POINT(0 0)', 4326))", (name, address1, "CA", city, postal_code, phone))
                 location_id = cur.lastrowid
                 cur.execute("SELECT id FROM materials WHERE name = %s", (type,))
                 result = cur.fetchone()
