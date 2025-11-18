@@ -1694,7 +1694,16 @@ a[href*="teleporthq.com"],
   border-radius: var(--border-radius-md);
 }
  
+.category-button.active {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface) 92%);
+  box-shadow: var(--shadow-level-2);
+  transform: translateY(-2px);
+}
 
+.category-button.active::before {
+  transform: scaleY(1);
+}
  
 .chatbot-section {
   margin: 0 auto;

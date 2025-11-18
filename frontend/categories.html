@@ -322,6 +322,7 @@
             btn.className = 'category-button';
             btn.setAttribute('role', 'button');
             btn.setAttribute('aria-label', `Browse ${name} category`);
+            btn.setAttribute('aria-pressed', 'false');
 
             const wrapper = document.createElement('div');
             wrapper.className = 'category-content';
@@ -334,10 +335,13 @@
 
             btn.appendChild(wrapper);
             btn.addEventListener('click', () => {
-              // Mark selection
               selectedCategoryId = id;
-              Array.from(grid.querySelectorAll('.category-button')).forEach(b => b.classList.remove('active'));
+              Array.from(grid.querySelectorAll('.category-button')).forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+              });
               btn.classList.add('active');
+              btn.setAttribute('aria-pressed', 'true');
               setSearchEnabled(true);
               // Initial load of items in the category (no query)
               fetchResults('');
