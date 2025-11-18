@@ -848,3 +848,714 @@ INSERT INTO items (name, material_id, default_stream, notes)
 SELECT 'Plastic cups (kids)', m.id, 'trash', 'Single-use kids party cups; garbage.'
 FROM materials m WHERE m.name='Plastic'
   AND NOT EXISTS (SELECT 1 FROM items WHERE name='Plastic cups (kids)');
+
+-- E-Waste (electronics)
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Calculators', m.id, 'hazardous', 'Do not place in garbage or recycling. Schedule HHW e-waste drop-off; consider repair/reuse or donation.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Calculators');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Cameras', m.id, 'hazardous', 'Do not place in garbage or recycling. Schedule HHW e-waste drop-off or use retailer take-back when available.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Cameras');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Cell Phones', m.id, 'hazardous', 'Do not place in garbage or recycling. Use HHW e-waste drop-off, carrier/retailer take-back, or donate if working.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Cell Phones');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Christmas Lights', m.id, 'hazardous', 'Tangled cords and bulbs; do not place in curbside bins. Use HHW e-waste or specialty drop-offs.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Christmas Lights');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Computer Accessories', m.id, 'hazardous', 'Includes keyboards, mice, external drives, webcams. Use HHW e-waste drop-off or retailer take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Computer Accessories');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Computer Monitors', m.id, 'hazardous', 'Contains hazardous materials. Schedule HHW e-waste drop-off; do not place in garbage or recycling.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Computer Monitors');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Computers', m.id, 'hazardous', 'Wipe data and donate if working; otherwise use HHW e-waste drop-off or retailer take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Computers');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Continuous Glucose Monitors (CGM)', m.id, 'hazardous', 'Contains batteries/electronics. Use HHW e-waste drop-off; follow manufacturer guidance for parts.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Continuous Glucose Monitors (CGM)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Cordless Appliances', m.id, 'hazardous', 'Remove batteries if possible; use HHW e-waste or retailer take-back. Do not curbside recycle.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Cordless Appliances');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'DVD Players', m.id, 'hazardous', 'Use HHW e-waste drop-off or retailer take-back. Do not place in curbside bins.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='DVD Players');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'E-Readers', m.id, 'hazardous', 'Back up and wipe data; donate if working. Otherwise use HHW e-waste or retailer take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='E-Readers');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Electrical Cords and Cables', m.id, 'hazardous', 'Tangles sorting equipment; do not place in curbside bins. Use HHW e-waste or take-back programs.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Electrical Cords and Cables');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Fax Machines', m.id, 'hazardous', 'HHW e-waste drop-off or retailer take-back. Do not place in garbage or recycling.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Fax Machines');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Game Consoles', m.id, 'hazardous', 'Consider resale/donation if working. Otherwise use HHW e-waste drop-off or retailer take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Game Consoles');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'GPS Systems', m.id, 'hazardous', 'Back up and wipe data; donate if working. Otherwise HHW e-waste drop-off.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='GPS Systems');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Hearing Aids (Non-Rechargeable)', m.id, 'hazardous', 'Contains batteries/electronics. Use HHW e-waste programs; follow manufacturer guidance.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Hearing Aids (Non-Rechargeable)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Hearing Aids (Rechargeable)', m.id, 'hazardous', 'Contains rechargeable batteries. Use HHW e-waste or retailer take-back; do not trash.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Hearing Aids (Rechargeable)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'iPods and MP3 Players', m.id, 'hazardous', 'Back up and wipe; donate if working. Otherwise HHW e-waste drop-off or take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='iPods and MP3 Players');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Microwaves', m.id, 'hazardous', 'Schedule HHW e-waste drop-off or junk pickup if accepted; do not curbside recycle.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Microwaves');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Printer Cartridges', m.id, 'hazardous', 'Use retailer/mail-back take-back programs or HHW e-waste; do not place in curbside bins.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Printer Cartridges');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Printers, Copiers and Scanners', m.id, 'hazardous', 'Use HHW e-waste or retailer take-back. Remove cartridges and cables when possible.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Printers, Copiers and Scanners');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Record Players', m.id, 'hazardous', 'Donate if working; otherwise HHW e-waste drop-off. Do not place in garbage or recycling.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Record Players');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Satellite Dishes', m.id, 'hazardous', 'Contact service provider for take-back; otherwise use HHW e-waste options.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Satellite Dishes');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Stereo Equipment', m.id, 'hazardous', 'Donate if working; otherwise HHW e-waste drop-off or retailer take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Stereo Equipment');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Tablets', m.id, 'hazardous', 'Back up and wipe data; donate if working. Otherwise HHW e-waste or take-back.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Tablets');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Telephones (Landline)', m.id, 'hazardous', 'Donate if working; otherwise HHW e-waste drop-off. Do not place in curbside bins.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Telephones (Landline)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'TV (CRT)', m.id, 'hazardous', 'High lead content; must go to HHW e-waste drop-off or certified recycler. Illegal to trash or recycle curbside.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='TV (CRT)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'TV (Flat Screen)', m.id, 'hazardous', 'HHW e-waste drop-off or certified recycler; consider donation if working. Do not curbside recycle.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='TV (Flat Screen)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'VCRs', m.id, 'hazardous', 'HHW e-waste drop-off or retailer take-back programs. Do not place in curbside bins.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='VCRs');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Video Games', m.id, 'hazardous', 'Resell or donate if working. Otherwise HHW e-waste drop-off; do not place in curbside bins.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Video Games');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Wireless Headphones', m.id, 'hazardous', 'Contains batteries. Use HHW e-waste or retailer take-back; do not trash.'
+FROM materials m WHERE m.name='Electronics'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Wireless Headphones');
+
+-- E-Waste Aliases
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'cellphone'
+FROM items i WHERE i.name='Cell Phones'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='cellphone');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'mobile phone'
+FROM items i WHERE i.name='Cell Phones'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='mobile phone');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'smartphone'
+FROM items i WHERE i.name='Cell Phones'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='smartphone');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'CRT TV'
+FROM items i WHERE i.name='TV (CRT)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='CRT TV');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'flat screen TV'
+FROM items i WHERE i.name='TV (Flat Screen)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='flat screen TV');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'LCD TV'
+FROM items i WHERE i.name='TV (Flat Screen)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='LCD TV');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'LED TV'
+FROM items i WHERE i.name='TV (Flat Screen)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='LED TV');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'Plasma TV'
+FROM items i WHERE i.name='TV (Flat Screen)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='Plasma TV');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'laptop'
+FROM items i WHERE i.name='Computers'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='laptop');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'desktop computer'
+FROM items i WHERE i.name='Computers'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='desktop computer');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'monitor'
+FROM items i WHERE i.name='Computer Monitors'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='monitor');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'charging cable'
+FROM items i WHERE i.name='Electrical Cords and Cables'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='charging cable');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'power cord'
+FROM items i WHERE i.name='Electrical Cords and Cables'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='power cord');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'ink cartridges'
+FROM items i WHERE i.name='Printer Cartridges'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='ink cartridges');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'toner cartridges'
+FROM items i WHERE i.name='Printer Cartridges'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='toner cartridges');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'all-in-one printer'
+FROM items i WHERE i.name='Printers, Copiers and Scanners'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='all-in-one printer');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'console'
+FROM items i WHERE i.name='Game Consoles'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='console');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'PlayStation'
+FROM items i WHERE i.name='Game Consoles'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='PlayStation');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'Xbox'
+FROM items i WHERE i.name='Game Consoles'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='Xbox');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'earbuds'
+FROM items i WHERE i.name='Wireless Headphones'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='earbuds');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'headphones (wireless)'
+FROM items i WHERE i.name='Wireless Headphones'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='headphones (wireless)');
+
+-- Yard Trimmings / Green Waste (compostables)
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Leaves', m.id, 'compost', 'Set out loose in street pile or yard trimmings cart per size/placement rules.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Leaves');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Grass clippings', m.id, 'compost', 'Accepted in yard trimmings cart or loose pile. Follow pile size and placement guidance.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Grass clippings');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Branches', m.id, 'compost', 'Accepted if less than 5 feet long and under 6 inches diameter.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Branches');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Prunings and clippings', m.id, 'compost', 'Includes plant/yard cuttings. Keep piles under 5x5 feet and clear of bike lanes.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Prunings and clippings');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Palm fronds', m.id, 'compost', 'Accepted in yard trimmings. Cut to required sizes for collection.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Palm fronds');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Fresh flowers', m.id, 'compost', 'Accepted in yard trimmings. Remove non-organic adornments.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Fresh flowers');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Sod', m.id, 'compost', 'Remove as much soil as possible before setout.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Sod');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Christmas trees (natural)', m.id, 'compost', 'Accepted after holidays. Remove stands, tinsel, ornaments, and lights.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Christmas trees (natural)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Christmas trees (flocked)', m.id, 'compost', 'Remove stands and decorations before setout. Flocked trees accepted for composting.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Christmas trees (flocked)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Wreaths (natural)', m.id, 'compost', 'Remove wires, frames, ribbons, and non-organic decorations before setout.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Wreaths (natural)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Succulents, yucca, and cacti', m.id, 'compost', 'Accepted as yard trimmings. Handle carefully; cut to size as needed.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Succulents, yucca, and cacti');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Animal bedding (organic)', m.id, 'compost', 'Plant-based, clean bedding only. No animal waste. Set out with yard trimmings.'
+FROM materials m WHERE m.name='Compostables'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Animal bedding (organic)');
+
+-- Yard Trimmings Aliases
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'leaf'
+FROM items i WHERE i.name='Leaves'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='leaf');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'grass'
+FROM items i WHERE i.name='Grass clippings'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='grass');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'lawn clippings'
+FROM items i WHERE i.name='Grass clippings'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='lawn clippings');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'tree branches'
+FROM items i WHERE i.name='Branches'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='tree branches');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'clippings'
+FROM items i WHERE i.name='Prunings and clippings'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='clippings');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'palm leaves'
+FROM items i WHERE i.name='Palm fronds'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='palm leaves');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'flowers'
+FROM items i WHERE i.name='Fresh flowers'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='flowers');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'turf'
+FROM items i WHERE i.name='Sod'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='turf');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'xmas tree'
+FROM items i WHERE i.name='Christmas trees (natural)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='xmas tree');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'christmas tree'
+FROM items i WHERE i.name='Christmas trees (natural)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='christmas tree');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'flocked tree'
+FROM items i WHERE i.name='Christmas trees (flocked)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='flocked tree');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'garland'
+FROM items i WHERE i.name='Wreaths (natural)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='garland');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'natural wreath'
+FROM items i WHERE i.name='Wreaths (natural)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='natural wreath');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'succulents'
+FROM items i WHERE i.name='Succulents, yucca, and cacti'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='succulents');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'cactus'
+FROM items i WHERE i.name='Succulents, yucca, and cacti'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='cactus');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'yucca'
+FROM items i WHERE i.name='Succulents, yucca, and cacti'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='yucca');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'bedding (organic)'
+FROM items i WHERE i.name='Animal bedding (organic)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='bedding (organic)');
+
+-- Household Hazardous Waste (HHW)
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Antifreeze', m.id, 'hazardous', 'Do not dump or trash. Use HHW drop-off or auto parts take-back.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Antifreeze');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Used motor oil', m.id, 'hazardous', 'HHW drop-off or certified center. Do not pour down drains.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Used motor oil');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Used oil filters', m.id, 'hazardous', 'Drain and place in sealed bag or container. Take to HHW or certified center; curbside with oil where available.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Used oil filters');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Fuels (gasoline/diesel/kerosene)', m.id, 'hazardous', 'Highly flammable. Keep in approved container and take to HHW. Do not trash or pour out.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Fuels (gasoline/diesel/kerosene)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Car batteries (lead-acid)', m.id, 'hazardous', 'Return to retailer for take-back or bring to HHW. Do not place in garbage or recycling.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Car batteries (lead-acid)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Propane tanks (5-gallon/20 lb)', m.id, 'hazardous', 'Do not place in carts. Exchange at retailer or bring to HHW or specialty locations.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Propane tanks (5-gallon/20 lb)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Propane cylinders (1 lb camping)', m.id, 'hazardous', 'Do not trash. Use camping cylinder take-back or HHW when available.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Propane cylinders (1 lb camping)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Aerosol cans (full/with contents)', m.id, 'hazardous', 'Pressurized and potentially flammable/toxic. Take to HHW. Empty metal cans may have different rules.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Aerosol cans (full/with contents)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Paint (latex)', m.id, 'hazardous', 'Use PaintCare retailer drop-off or HHW. Keep in original container with lid.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Paint (latex)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Paint (oil-based)', m.id, 'hazardous', 'Flammable. Bring to HHW or PaintCare sites that accept. Do not trash.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Paint (oil-based)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Paint thinner/solvents', m.id, 'hazardous', 'Store sealed and take to HHW. Do not pour down drains or trash.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Paint thinner/solvents');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Cleaning products (bleach/ammonia)', m.id, 'hazardous', 'Corrosive/toxic. Use up or take to HHW. Never mix bleach and ammonia.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Cleaning products (bleach/ammonia)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Drain opener', m.id, 'hazardous', 'Highly corrosive. Keep capped and bring to HHW. Do not pour out.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Drain opener');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Pesticides', m.id, 'hazardous', 'Toxic. Keep in original container and bring to HHW or retailer take-back where available.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Pesticides');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Herbicides', m.id, 'hazardous', 'Toxic. Keep in original container and bring to HHW. Do not trash.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Herbicides');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Poisons', m.id, 'hazardous', 'Toxic chemicals. Keep sealed and take to HHW; do not place in carts.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Poisons');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Pool & hot tub chemicals', m.id, 'hazardous', 'Oxidizers/corrosives. Keep separate and bring to HHW. Do not mix chemicals.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Pool & hot tub chemicals');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Mercury thermometers', m.id, 'hazardous', 'Handle carefully; keep sealed and bring to HHW. Do not trash.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Mercury thermometers');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Mercury thermostats', m.id, 'hazardous', 'Recycle via Thermostat Recycling Corp or HHW. May qualify for rebate. Do not trash.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Mercury thermostats');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Needles & sharps', m.id, 'hazardous', 'Place in approved sharps container and take to HHW or medical take-back. Do not place in carts.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Needles & sharps');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Fire extinguishers', m.id, 'hazardous', 'Do not place in carts. Bring to HHW or specialty take-back; call ahead for instructions.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Fire extinguishers');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Solvents', m.id, 'hazardous', 'Flammable/toxic. Keep sealed and bring to HHW. Do not pour out.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Solvents');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Adhesives & glues (solvent-based)', m.id, 'hazardous', 'Flammable solvents. Bring to HHW. Water-based glues may have different rules.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Adhesives & glues (solvent-based)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Brake fluid', m.id, 'hazardous', 'Automotive fluid. Keep separate and bring to HHW. Do not pour down drains.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Brake fluid');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Transmission fluid', m.id, 'hazardous', 'Automotive fluid. Keep separate and bring to HHW. Do not pour down drains.'
+FROM materials m WHERE m.name='Hazardous'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Transmission fluid');
+
+-- HHW Aliases
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'coolant'
+FROM items i WHERE i.name='Antifreeze'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='coolant');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'motor oil'
+FROM items i WHERE i.name='Used motor oil'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='motor oil');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'used oil'
+FROM items i WHERE i.name='Used motor oil'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='used oil');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'oil filter'
+FROM items i WHERE i.name='Used oil filters'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='oil filter');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'car battery'
+FROM items i WHERE i.name='Car batteries (lead-acid)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='car battery');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'lead acid battery'
+FROM items i WHERE i.name='Car batteries (lead-acid)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='lead acid battery');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'BBQ propane tank'
+FROM items i WHERE i.name='Propane tanks (5-gallon/20 lb)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='BBQ propane tank');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, '20 lb propane tank'
+FROM items i WHERE i.name='Propane tanks (5-gallon/20 lb)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='20 lb propane tank');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'camping propane'
+FROM items i WHERE i.name='Propane cylinders (1 lb camping)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='camping propane');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, '1 lb propane'
+FROM items i WHERE i.name='Propane cylinders (1 lb camping)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='1 lb propane');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'gas'
+FROM items i WHERE i.name='Fuels (gasoline/diesel/kerosene)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='gas');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'gasoline'
+FROM items i WHERE i.name='Fuels (gasoline/diesel/kerosene)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='gasoline');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'petrol'
+FROM items i WHERE i.name='Fuels (gasoline/diesel/kerosene)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='petrol');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'latex paint'
+FROM items i WHERE i.name='Paint (latex)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='latex paint');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'oil-based paint'
+FROM items i WHERE i.name='Paint (oil-based)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='oil-based paint');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'alkyd paint'
+FROM items i WHERE i.name='Paint (oil-based)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='alkyd paint');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'paint thinner'
+FROM items i WHERE i.name='Paint thinner/solvents'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='paint thinner');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'mineral spirits'
+FROM items i WHERE i.name='Paint thinner/solvents'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='mineral spirits');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'solvent'
+FROM items i WHERE i.name='Paint thinner/solvents'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='solvent');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'insecticide'
+FROM items i WHERE i.name='Pesticides'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='insecticide');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'bug spray'
+FROM items i WHERE i.name='Pesticides'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='bug spray');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'weed killer'
+FROM items i WHERE i.name='Herbicides'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='weed killer');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'Roundup'
+FROM items i WHERE i.name='Herbicides'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='Roundup');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'chlorine'
+FROM items i WHERE i.name='Pool & hot tub chemicals'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='chlorine');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'pool shock'
+FROM items i WHERE i.name='Pool & hot tub chemicals'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='pool shock');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'thermometer (mercury)'
+FROM items i WHERE i.name='Mercury thermometers'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='thermometer (mercury)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'thermostat (mercury)'
+FROM items i WHERE i.name='Mercury thermostats'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='thermostat (mercury)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'needles'
+FROM items i WHERE i.name='Needles & sharps'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='needles');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'syringes'
+FROM items i WHERE i.name='Needles & sharps'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='syringes');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'lancets'
+FROM items i WHERE i.name='Needles & sharps'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='lancets');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'spray paint'
+FROM items i WHERE i.name='Aerosol cans (full/with contents)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='spray paint');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'aerosol can (non-empty)'
+FROM items i WHERE i.name='Aerosol cans (full/with contents)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='aerosol can (non-empty)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'extinguisher'
+FROM items i WHERE i.name='Fire extinguishers'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='extinguisher');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'bleach'
+FROM items i WHERE i.name='Cleaning products (bleach/ammonia)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='bleach');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'ammonia'
+FROM items i WHERE i.name='Cleaning products (bleach/ammonia)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='ammonia');
