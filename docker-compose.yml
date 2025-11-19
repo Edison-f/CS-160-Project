@@ -13,5 +13,31 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpw"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  seed_locations:
+    image: python:3.11-slim
+    container_name: sortsmart-seed-locations
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      DB_HOST: db
+      DB_USER: sortsmart
+      DB_PASSWORD: sortsmartpw
+      DB_NAME: sortsmart
+      DB_PORT: "3306"
+    command: >
+      sh -c "pip install --no-cache-dir -r backend/requirements.txt && python db/insert_locations.py"
+    restart: "no"
+
 volumes:
   mysql_data:

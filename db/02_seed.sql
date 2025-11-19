@@ -1,7 +1,8 @@
 USE sortsmart;
 
 INSERT INTO materials (name) VALUES
- ('Plastic'), ('Paper'), ('Metal'), ('Compostables'), ('Hazardous'), ('Special'), ('Electronics'), ('Glass');
+ ('Plastic'), ('Paper'), ('Metal'), ('Compostables'), ('Hazardous'), ('Special'), ('Electronics'), ('Glass'),
+ ('CRV'), ('UsedOil'), ('Tires');
 
 INSERT INTO items (name, material_id, default_stream, notes)
 VALUES

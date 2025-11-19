@@ -1559,3 +1559,77 @@ INSERT INTO item_aliases (item_id, alias)
 SELECT i.id, 'ammonia'
 FROM items i WHERE i.name='Cleaning products (bleach/ammonia)'
   AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='ammonia');
+
+-- CRV (California Redemption Value) beverage containers
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'CRV aluminum beverage can', m.id, 'recycle', 'Eligible for CRV redemption; empty and rinse.'
+FROM materials m WHERE m.name='CRV'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='CRV aluminum beverage can');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'CRV plastic beverage bottle', m.id, 'recycle', 'Eligible for CRV redemption; empty and rinse. Keep cap on.'
+FROM materials m WHERE m.name='CRV'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='CRV plastic beverage bottle');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'CRV glass beverage bottle', m.id, 'recycle', 'Eligible for CRV redemption; empty and rinse.'
+FROM materials m WHERE m.name='CRV'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='CRV glass beverage bottle');
+
+-- Used Oil (dedicated material for oil take-back locations)
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Used motor oil (CACC)', m.id, 'hazardous', 'Take to a certified used oil collection center; do not pour down drains.'
+FROM materials m WHERE m.name='UsedOil'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Used motor oil (CACC)');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Used oil filter (CACC)', m.id, 'hazardous', 'Drain and bag. Take with used oil to a certified center.'
+FROM materials m WHERE m.name='UsedOil'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Used oil filter (CACC)');
+
+-- Tires (special handling)
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Passenger car tires', m.id, 'special', 'Not allowed in curbside carts. Take to tire retailers or county events.'
+FROM materials m WHERE m.name='Tires'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Passenger car tires');
+
+INSERT INTO items (name, material_id, default_stream, notes)
+SELECT 'Bicycle tires', m.id, 'special', 'Check bike shops or special drop-offs; not accepted in curbside carts.'
+FROM materials m WHERE m.name='Tires'
+  AND NOT EXISTS (SELECT 1 FROM items WHERE name='Bicycle tires');
+
+-- Aliases for new categories
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'soda can (CRV)'
+FROM items i WHERE i.name='CRV aluminum beverage can'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='soda can (CRV)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'water bottle (CRV)'
+FROM items i WHERE i.name='CRV plastic beverage bottle'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='water bottle (CRV)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'beer bottle (CRV)'
+FROM items i WHERE i.name='CRV glass beverage bottle'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='beer bottle (CRV)');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'motor oil'
+FROM items i WHERE i.name='Used motor oil (CACC)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='motor oil');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'oil filter'
+FROM items i WHERE i.name='Used oil filter (CACC)'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='oil filter');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'car tires'
+FROM items i WHERE i.name='Passenger car tires'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='car tires');
+
+INSERT INTO item_aliases (item_id, alias)
+SELECT i.id, 'bike tires'
+FROM items i WHERE i.name='Bicycle tires'
+  AND NOT EXISTS (SELECT 1 FROM item_aliases a WHERE a.item_id=i.id AND a.alias='bike tires');
