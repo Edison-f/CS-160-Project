@@ -36,11 +36,11 @@ def api_item_search():
 def api_resource_links():
     return resource_links()
 
-@app.route('/api/chatbot')
+@app.route('/api/chatbot', methods=['GET', 'POST'])
 def api_chatbot():
     return chatbot()
 
-@app.route('/api/image_recognition')
+@app.route('/api/image_recognition', methods=['GET', 'POST'])
 def api_image_recognition():
     return image_recognition()
 
