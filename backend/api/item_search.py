@@ -6,7 +6,6 @@ from api.db import get_db_connection
 
 load_dotenv()
 
-# TODO: Implement this endpoint
 def item_search():
     q = (request.args.get("q") or "").strip()
     material_id = (request.args.get("material_id") or "").strip()
@@ -18,12 +17,12 @@ def item_search():
     params = []
 
     if q:
-        # Tokenize query for more flexible matching (AND across tokens)
+        # Tokenize query for more flexible matching
         tokens = [t for t in q.split() if t]
         token_clauses = []
         for t in tokens:
             token_like = f"%{t}%"
-            # Each token must appear in at least one of name/notes/alias
+            # Each token must appear in at least one of name/alias
             token_clauses.append("(i.name LIKE %s OR a.alias LIKE %s)")
             params.extend([token_like, token_like])
         where_clauses.append(" AND ".join(token_clauses))
@@ -36,14 +35,12 @@ def item_search():
     if not where_clauses and not include_all_defaults:
         return jsonify([])
 
-    # Always join disposal_rules so dr.* is safe to select
     dr_join = """
       LEFT JOIN disposal_rules dr
         ON dr.item_id = i.id
        AND dr.state = %s
        AND dr.county_name = %s
     """
-    # Join params must precede WHERE params
     join_params = [state, county_name or None]
     params = join_params + params
 

@@ -14,7 +14,7 @@ INSERT INTO item_aliases (item_id, alias)
 VALUES
  (1, 'cardboard pizza box'), (2, 'soda can'), (3, 'Li-ion battery');
 
--- Example county resources (keyed by county_name/state)
+-- County resource links (keyed by county_name/state)
 INSERT INTO resources (county_name, state, title, url)
 VALUES
  ('Alameda County',     'CA', 'Alameda County Recycling Guide',    'https://www.stopwaste.org/'),

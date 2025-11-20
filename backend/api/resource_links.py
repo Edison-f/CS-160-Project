@@ -6,8 +6,6 @@ from api.db import get_db_connection
 
 load_dotenv()
 
-# TODO: Implement this endpoint
-
 def resource_links():
     zip5 = (request.args.get("zip") or "").strip()
     county_name = (request.args.get("county_name") or "").strip()
@@ -21,7 +19,6 @@ def resource_links():
                 z = cur.fetchone()
                 if not z:
                     return jsonify({"error": "ZIP not found"}), 404
-                # DictCursor returns dicts
                 county_name, state = z["county_name"], z["state"]
 
             # Return links for a county/state, or all if not specified

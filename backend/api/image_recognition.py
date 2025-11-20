@@ -6,7 +6,6 @@ from api.db import get_db_connection
 
 load_dotenv()
 
-# TODO: Implement this endpoint
 def image_recognition():
     conn = get_db_connection()
     cur = conn.cursor()
