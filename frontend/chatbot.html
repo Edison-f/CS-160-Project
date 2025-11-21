@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./style.css" />
     <link href="./index.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha256-DYubcHnTCs2t3gW8Q9b+RmF2unrYHkM2gJGZveHFkDk=" crossorigin="anonymous"></script>
     <style>
       .home-container1 {
         min-height: auto;
@@ -176,10 +177,45 @@
         const sendBtn = document.getElementById('send-btn');
         const errorContainer = document.getElementById('error-container');
         
+        // Basic sanitization: remove <script> tags and inline event handlers
+        function sanitize(html) {
+          if (!html) return '';
+          let cleaned = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+          cleaned = cleaned.replace(/ on[a-zA-Z]+="[^"]*"/g, '');
+          cleaned = cleaned.replace(/href\s*=\s*"javascript:[^"]*"/gi, 'href="#"');
+          return cleaned;
+        }
+
+        function renderMarkdown(md) {
+          if (!md) return '';
+          try {
+            marked.setOptions({
+              breaks: true,
+              mangle: false,
+              headerIds: false
+            });
+            const raw = marked.parse(md);
+            return sanitize(raw);
+          } catch (e) {
+            return sanitize(
+              md
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/^\s*- (.*)$/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+            );
+          }
+        }
+
         function addMessage(text, isUser) {
           const messageDiv = document.createElement('div');
           messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-          messageDiv.textContent = text;
+          if (isUser) {
+            messageDiv.textContent = text;
+          } else {
+            messageDiv.innerHTML = renderMarkdown(text);
+          }
           chatMessages.appendChild(messageDiv);
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }

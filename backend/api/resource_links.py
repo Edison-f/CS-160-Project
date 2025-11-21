@@ -23,7 +23,6 @@ def resource_links():
 
             # Return links for a county/state, or all if not specified
             if county_name:
-                # Accept both "X" and "X County"
                 if not county_name.lower().endswith(" county"):
                     sql = """
                       SELECT id, title, url, county_name, state

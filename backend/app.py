@@ -19,7 +19,6 @@ CORS(app)
 def index():
     return send_from_directory('../frontend', 'index.html')
 
-# Serve any other frontend file (HTML, CSS, JS, images) by path
 @app.route('/<path:path>')
 def static_files(path):
     return send_from_directory('../frontend', path)
